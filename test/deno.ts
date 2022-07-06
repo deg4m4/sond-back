@@ -31,7 +31,8 @@ async function handleHttp(conn: Deno.Conn) {
 
     // Build and send the response
     const response = new Response(readableStream, {headers: {
-      "Content-Length": (await file.stat()).size
+      "Content-Length": (await file.stat()).size,
+      "Content-Disposition": `attachment; filename="drs.mkv"`
     }});
     await requestEvent.respondWith(response);
   }
